@@ -6,7 +6,7 @@
 /*   By: gtomasin <gtomasin@student.42lehavre.fr>  #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/11/01 02:55:24 by gtomasin         #+#    #+#              */
-/*   Updated: 2026/11/06 23:18:48 by gtomasin        ###   ########.fr        */
+/*   Updated: 2026/11/06 23:20:59 by gtomasin        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,5 +84,5 @@ char	*get_next_line(int fd)
 		if (bytes_read == -1)
 			return (NULL);
 	}
-	return (get_line(keep));
+	return (get_line(&keep));
 }
