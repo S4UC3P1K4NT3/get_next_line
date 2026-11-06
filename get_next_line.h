@@ -6,7 +6,7 @@
 /*   By: gtomasin <gtomasin@student.42lehavre.fr>  #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/11/01 02:55:42 by gtomasin         #+#    #+#              */
-/*   Updated: 2026/11/06 21:34:37 by gtomasin        ###   ########.fr        */
+/*   Updated: 2026/11/06 21:54:13 by gtomasin        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,6 @@ char	*get_next_line(int fd);
 size_t	ft_strlen(const char *s);
 int		has_newline(char *str);
 char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_strchr(const char *s, int c);
 
 #endif
