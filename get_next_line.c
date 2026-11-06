@@ -6,13 +6,13 @@
 /*   By: gtomasin <gtomasin@student.42lehavre.fr>  #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/11/01 02:55:24 by gtomasin         #+#    #+#              */
-/*   Updated: 2026/11/06 20:53:08 by gtomasin        ###   ########.fr        */
+/*   Updated: 2026/11/06 21:53:15 by gtomasin        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int	has_newline(char *str)
+static int	has_newline(char *str)
 {
 	int	i;
 
@@ -23,18 +23,27 @@ int	has_newline(char *str)
 	return (0);
 }
 
-static char	*get_line(char *keep);
+static char	*get_line(char *keep)
+{
+}
 
-static int	*read_line(char *keep)
+static int	*read_line(char *keep, int fd)
 {
 	char	*tmp;
+	int		i;
 
-	keep = malloc((ft_strlen(keep) + 1 + BUFFER_SIZE) * sizeof(char));
+	tmp = malloc((BUFFER_SIZE + 1) * sizeof(char));
+	if (!tmp)
+		return (-1);
+	i = read(fd, tmp, BUFFER_SIZE);
+	if (i == -1)
+		return (-1);
+	tmp[i] = 0;
+	keep = ft_strjoin(tmp, keep);
+	free(tmp);
 	if (!keep)
-		return (free(keep), -1);
-	while ()
-	{
-	}
+		return (-1);
+	return (ft_strlen(keep));
 }
 
 char	*get_next_line(int fd)
@@ -44,7 +53,7 @@ char	*get_next_line(int fd)
 
 	while (has_newline(keep) == 0)
 	{
-		bytes_read = read_line(keep);
+		bytes_read = read_line(keep, fd);
 		if (bytes_read == -1)
 			return (NULL);
 	}
