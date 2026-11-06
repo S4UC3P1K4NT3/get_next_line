@@ -6,36 +6,46 @@
 /*   By: gtomasin <gtomasin@student.42lehavre.fr>  #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/11/01 02:55:24 by gtomasin         #+#    #+#              */
-/*   Updated: 2026/11/03 23:07:02 by gtomasin        ###   ########.fr        */
+/*   Updated: 2026/11/06 20:53:08 by gtomasin        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-void	keep_fill(char *keep, char *str)
+int	has_newline(char *str)
 {
-	keep = malloc(ft_strlen((str + 1) * sizeof(char)));
-	while (str++)
-		keep++ = str++;
+	int	i;
+
+	while (str && str[i] != '\n')
+		i++;
+	if (str[i] == '\n')
+		return (1);
+	return (0);
+}
+
+static char	*get_line(char *keep);
+
+static int	*read_line(char *keep)
+{
+	char	*tmp;
+
+	keep = malloc((ft_strlen(keep) + 1 + BUFFER_SIZE) * sizeof(char));
+	if (!keep)
+		return (free(keep), -1);
+	while ()
+	{
+	}
 }
 
 char	*get_next_line(int fd)
 {
-	char		*tmp;
 	static char	*keep;
 	int			bytes_read;
-	int			i;
 
-	i = 0;
-	tmp = malloc((BUFFER_SIZE + 1 + ft_strlen(keep)) * sizeof(char));
-	if (!tmp)
-		return (NULL);
-	bytes_read = read(fd, tmp, BUFFER_SIZE);
-	if (bytes_read == -1)
-		return (free(tmp), NULL);
-	while (keep)
-		tmp[bytes_read++] = keep++;
-	tmp[bytes_read] = '\0';
-	while (tmp[i] != '\n' && tmp[i] != '\0')
-		i++;
+	while (has_newline(keep) == 0)
+	{
+		bytes_read = read_line(keep);
+		if (bytes_read == -1)
+			return (NULL);
+	}
 }
