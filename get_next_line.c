@@ -6,7 +6,7 @@
 /*   By: gtomasin <gtomasin@student.42lehavre.fr>  #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/11/01 02:55:24 by gtomasin         #+#    #+#              */
-/*   Updated: 2026/11/06 22:23:27 by gtomasin        ###   ########.fr        */
+/*   Updated: 2026/11/06 22:24:40 by gtomasin        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static char	*get_line(char *keep)
 	return (tmp);
 }
 
-static int	*read_line(char *keep, int fd)
+static int	read_line(char *keep, int fd)
 {
 	char	*tmp;
 	int		i;
