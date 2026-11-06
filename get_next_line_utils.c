@@ -6,7 +6,7 @@
 /*   By: gtomasin <gtomasin@student.42lehavre.fr>  #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/11/01 02:55:33 by gtomasin         #+#    #+#              */
-/*   Updated: 2026/11/06 22:25:54 by gtomasin        ###   ########.fr        */
+/*   Updated: 2026/11/06 23:20:03 by gtomasin        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	str[0] = '\0';
 	ft_strlcat(str, s1, len);
 	ft_strlcat(str, s2, len);
-	return (str);
+	return (free(s1), str);
 }
 
 char	*ft_strchr(const char *s, int c)

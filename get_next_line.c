@@ -6,7 +6,7 @@
 /*   By: gtomasin <gtomasin@student.42lehavre.fr>  #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/11/01 02:55:24 by gtomasin         #+#    #+#              */
-/*   Updated: 2026/11/06 23:15:25 by gtomasin        ###   ########.fr        */
+/*   Updated: 2026/11/06 23:18:48 by gtomasin        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,28 +26,28 @@ static int	has_newline(char *str)
 	return (0);
 }
 
-static char	*get_line(char *keep)
+static char	*get_line(char **keep)
 {
 	char	*tmp;
 	int		i;
 
 	i = 0;
-	while (keep[i] != '\n' && keep[i] != '\0')
+	while (*keep[i] != '\n' && *keep[i] != '\0')
 		i++;
 	tmp = malloc((i + 1) * sizeof(char));
 	if (!tmp)
 		return (NULL);
 	i = 0;
-	while (keep[i] != '\n' && keep[i] != '\0')
+	while (*keep[i - 1] != '\n' && *keep[i] != '\0')
 	{
-		tmp[i] = keep[i];
+		tmp[i] = *keep[i];
 		i++;
 	}
 	tmp[i] = 0;
-	keep = malloc((ft_strlen(ft_strchr(keep, '\n')) + 1) * sizeof(char));
-	if (!keep)
+	*keep = malloc((ft_strlen(ft_strchr(*keep, '\n')) + 1) * sizeof(char));
+	if (!*keep)
 		return (NULL);
-	keep = ft_strchr(keep, '\n');
+	*keep = ft_strchr(*keep, '\n');
 	return (tmp);
 }
 
