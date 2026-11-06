@@ -6,7 +6,7 @@
 /*   By: gtomasin <gtomasin@student.42lehavre.fr>  #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/11/01 02:55:24 by gtomasin         #+#    #+#              */
-/*   Updated: 2026/11/06 22:47:35 by gtomasin        ###   ########.fr        */
+/*   Updated: 2026/11/06 23:15:25 by gtomasin        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	has_newline(char *str)
 	i = 0;
 	if (!str)
 		return (0);
-	while (str && str[i] != '\n')
+	while (str[i] && str[i] != '\n')
 		i++;
 	if (str[i] == '\n')
 		return (1);
@@ -43,7 +43,7 @@ static char	*get_line(char *keep)
 		tmp[i] = keep[i];
 		i++;
 	}
-	tmp[i + 1] = 0;
+	tmp[i] = 0;
 	keep = malloc((ft_strlen(ft_strchr(keep, '\n')) + 1) * sizeof(char));
 	if (!keep)
 		return (NULL);
@@ -51,7 +51,7 @@ static char	*get_line(char *keep)
 	return (tmp);
 }
 
-static int	read_line(char *keep, int fd)
+static int	read_line(char **keep, int fd)
 {
 	char	*tmp;
 	int		i;
@@ -61,13 +61,13 @@ static int	read_line(char *keep, int fd)
 		return (-1);
 	i = read(fd, tmp, BUFFER_SIZE);
 	if (i == -1)
-		return (-1);
+		return (free(tmp), -1);
 	tmp[i] = 0;
-	keep = ft_strjoin(tmp, keep);
+	*keep = ft_strjoin(*keep, tmp);
 	free(tmp);
-	if (!keep)
+	if (!*keep)
 		return (-1);
-	return (ft_strlen(keep));
+	return (i);
 }
 
 char	*get_next_line(int fd)
@@ -78,9 +78,9 @@ char	*get_next_line(int fd)
 	bytes_read = 1;
 	if (BUFFER_SIZE <= 0)
 		return (NULL);
-	while (has_newline(keep) == 0 && bytes_read != 0)
+	while (bytes_read != 0 && has_newline(keep) == 0)
 	{
-		bytes_read = read_line(keep, fd);
+		bytes_read = read_line(&keep, fd);
 		if (bytes_read == -1)
 			return (NULL);
 	}
