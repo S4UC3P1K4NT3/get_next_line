@@ -6,11 +6,36 @@
 /*   By: gtomasin <gtomasin@student.42lehavre.fr>  #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/11/01 02:55:33 by gtomasin         #+#    #+#              */
-/*   Updated: 2026/11/06 22:15:20 by gtomasin        ###   ########.fr        */
+/*   Updated: 2026/11/06 22:25:54 by gtomasin        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+static size_t	ft_strlcat(char *dest, const char *src, size_t destsize)
+{
+	size_t	i;
+	size_t	j;
+	size_t	dest_len;
+	size_t	src_len;
+
+	src_len = ft_strlen(src);
+	i = 0;
+	j = 0;
+	while (i < destsize && dest[i])
+		i++;
+	dest_len = i;
+	if (i == destsize)
+		return (destsize + src_len);
+	while (src[j] && (i + j + 1) < destsize)
+	{
+		dest[i + j] = src[j];
+		j++;
+	}
+	if (i < destsize)
+		dest[i + j] = '\0';
+	return (dest_len + src_len);
+}
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
@@ -85,29 +110,4 @@ char	*ft_strchr(const char *s, int c)
 		return ((char *) s);
 	}
 	return (NULL);
-}
-
-static size_t	ft_strlcat(char *dest, const char *src, size_t destsize)
-{
-	size_t	i;
-	size_t	j;
-	size_t	dest_len;
-	size_t	src_len;
-
-	src_len = ft_strlen(src);
-	i = 0;
-	j = 0;
-	while (i < destsize && dest[i])
-		i++;
-	dest_len = i;
-	if (i == destsize)
-		return (destsize + src_len);
-	while (src[j] && (i + j + 1) < destsize)
-	{
-		dest[i + j] = src[j];
-		j++;
-	}
-	if (i < destsize)
-		dest[i + j] = '\0';
-	return (dest_len + src_len);
 }
