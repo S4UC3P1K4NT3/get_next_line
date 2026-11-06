@@ -6,7 +6,7 @@
 /*   By: gtomasin <gtomasin@student.42lehavre.fr>  #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/11/01 02:55:24 by gtomasin         #+#    #+#              */
-/*   Updated: 2026/11/06 22:33:50 by gtomasin        ###   ########.fr        */
+/*   Updated: 2026/11/06 22:45:34 by gtomasin        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ static int	has_newline(char *str)
 {
 	int	i;
 
+	i = 0;
 	while (str && str[i] != '\n')
 		i++;
 	if (str[i] == '\n')
