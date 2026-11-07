@@ -6,7 +6,7 @@
 /*   By: gtomasin <gtomasin@student.42lehavre.fr>  #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/11/01 02:55:33 by gtomasin         #+#    #+#              */
-/*   Updated: 2026/11/06 23:21:41 by gtomasin        ###   ########.fr        */
+/*   Updated: 2026/11/07 14:39:47 by gtomasin        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,50 +64,64 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	return (r);
 }
 
-size_t	ft_strlen(const char *s)
+size_t	len(const char *str)
 {
-	size_t	compt;
+	size_t	i;
 
-	compt = 0;
-	while (s[compt] != '\0')
-	{
-		compt++;
-	}
-	return (compt);
+	i = 0;
+	if (!str)
+		return (0);
+	while (str[i])
+		i++;
+	return (i);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char *s1, char *s2)
 {
-	char	*str;
-	size_t	len;
+	char	*result;
+	size_t	i;
+	size_t	j;
 
-	if (!s1 || !s2)
+	result = malloc((len(s1) + len(s2) + 1) * sizeof(char));
+	if (!result)
 		return (NULL);
-	len = ft_strlen(s1) + ft_strlen(s2) + 1;
-	str = malloc((len) * sizeof(char));
-	if (!str)
-		return (NULL);
-	str[0] = '\0';
-	ft_strlcat(str, s1, len);
-	ft_strlcat(str, s2, len);
-	return (str);
+	i = 0;
+	while (s1 && s1[i])
+	{
+		result[i] = s1[i];
+		i++;
+	}
+	j = 0;
+	while (s2 && s2[j])
+	{
+		result[i + j] = s2[j];
+		j++;
+	}
+	result[i + j] = '\0';
+	return (result);
 }
 
 char	*ft_strchr(const char *s, int c)
 {
-	while (*s)
-	{
-		if ((unsigned char)*s == (unsigned char) c)
-		{
-			s++;
-			return ((char *) s);
-		}
+	char	*result;
+	size_t	i;
+
+	if (!s)
+		return (NULL);
+	while (*s && (unsigned char)*s != (unsigned char) c)
 		s++;
-	}
-	if ((unsigned char)*s == (unsigned char) c)
+	if (!*s || !s[1])
+		return (NULL);
+	s++;
+	result = malloc((len(s) + 1) * sizeof(char));
+	if (!result)
+		return (NULL);
+	i = 0;
+	while (s[i])
 	{
-		s++;
-		return ((char *) s);
+		result[i] = s[i];
+		i++;
 	}
-	return (NULL);
+	result[i] = '\0';
+	return (result);
 }

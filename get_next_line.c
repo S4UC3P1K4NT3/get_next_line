@@ -5,8 +5,8 @@
 /*                                                   +:+ +:+         +:+      */
 /*   By: gtomasin <gtomasin@student.42lehavre.fr>  #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
-/*   Created: 2026/11/01 02:55:24 by gtomasin         #+#    #+#              */
-/*   Updated: 2026/11/07 00:41:15 by gtomasin        ###   ########.fr        */
+/*   Created: 2026/11/07 14:40:02 by gtomasin         #+#    #+#              */
+/*   Updated: 2026/11/07 14:40:11 by gtomasin        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,28 +28,84 @@ static int	has_newline(char *str)
 	return (0);
 }
 
-static char	*get_line(char *keep)
+static char	*get_line(char **k)
 {
+	char	*tmp;
+	char	*rest;
+	size_t	i;
+
+	i = 0;
+	while ((*k)[i] && (*k)[i] != '\n')
+		i++;
+	if ((*k)[i] == '\n')
+		i++;
+	tmp = malloc((i + 1) * sizeof(char));
+	if (!tmp)
+		return (NULL);
+	rest = ft_strchr(*k, '\n');
+	if ((*k)[i] && !rest)
+	{
+		free(tmp);
+		return (NULL);
+	}
+	tmp[i] = '\0';
+	while (i-- > 0)
+		tmp[i] = (*k)[i];
+	free(*k);
+	*k = rest;
+	return (tmp);
 }
 
-static char	*read_line(char *keep, int fd)
+static char	*eof(char *tmp, char **keep, ssize_t br)
 {
+	char	*line;
+
+	free(tmp);
+	if (br < 0 || !*keep || !**keep)
+	{
+		free(*keep);
+		*keep = NULL;
+		return (NULL);
+	}
+	line = get_line(keep);
+	if (!line)
+	{
+		free(*keep);
+		*keep = NULL;
+	}
+	return (line);
+}
+
+static char	*read_line(char **keep, int fd)
+{
+	ssize_t	br;
+	char	*tmp;
+	char	*joined;
+
+	tmp = malloc((BUFFER_SIZE + 1) * sizeof(char));
+	if (!tmp)
+		return (eof(NULL, keep, -1));
+	br = 1;
+	while (!has_newline(*keep) && br > 0)
+	{
+		br = read(fd, tmp, BUFFER_SIZE);
+		if (br <= 0)
+			break ;
+		tmp[br] = '\0';
+		joined = ft_strjoin(*keep, tmp);
+		if (!joined)
+			return (eof(tmp, keep, -1));
+		free(*keep);
+		*keep = joined;
+	}
+	return (eof(tmp, keep, br));
 }
 
 char	*get_next_line(int fd)
 {
-	char		*tmp;
 	static char	*keep;
-	int			bytes_read;
 
-	bytes_read = 1;
-	if (BUFFER_SIZE <= 0)
+	if (BUFFER_SIZE <= 0 || fd < 0)
 		return (NULL);
-	while (has_newline(keep) == 0 && bytes_read != 0)
-	{
-		bytes_read = read(fd, tmp, BUFFER_SIZE);
-		if (bytes_read == -1)
-			return (NULL);
-	}
-	return ;
+	return (read_line(&keep, fd));
 }
