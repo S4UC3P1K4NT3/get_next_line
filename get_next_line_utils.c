@@ -6,7 +6,7 @@
 /*   By: gtomasin <gtomasin@student.42lehavre.fr>  #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/11/01 02:55:33 by gtomasin         #+#    #+#              */
-/*   Updated: 2026/11/07 14:45:27 by gtomasin        ###   ########.fr        */
+/*   Updated: 2026/11/07 14:48:37 by gtomasin        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,13 @@ size_t	ft_len(const char *str)
 	return (i);
 }
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*ft_strjoin(const char *s1, const char *s2)
 {
 	char	*result;
 	size_t	i;
 	size_t	j;
 
-	result = malloc((len(s1) + len(s2) + 1) * sizeof(char));
+	result = malloc((ft_len(s1) + ft_len(s2) + 1) * sizeof(char));
 	if (!result)
 		return (NULL);
 	i = 0;
@@ -88,7 +88,7 @@ char	*ft_strchr(const char *s, int c)
 	if (!*s || !s[1])
 		return (NULL);
 	s++;
-	result = malloc((len(s) + 1) * sizeof(char));
+	result = malloc((ft_len(s) + 1) * sizeof(char));
 	if (!result)
 		return (NULL);
 	i = 0;
