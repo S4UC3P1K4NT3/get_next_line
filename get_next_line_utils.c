@@ -6,7 +6,7 @@
 /*   By: gtomasin <gtomasin@student.42lehavre.fr>  #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/11/01 02:55:33 by gtomasin         #+#    #+#              */
-/*   Updated: 2026/11/07 14:44:00 by gtomasin        ###   ########.fr        */
+/*   Updated: 2026/11/07 14:45:27 by gtomasin        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	if (!s)
 		return (NULL);
 	i = 0;
-	s_len = ft_strlen(s);
+	s_len = ft_len(s);
 	if (start >= s_len)
 		len = 0;
 	else if ((s_len - start) < len)
@@ -39,7 +39,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	return (r);
 }
 
-size_t	len(const char *str)
+size_t	ft_len(const char *str)
 {
 	size_t	i;
 
