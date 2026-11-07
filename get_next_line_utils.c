@@ -6,7 +6,7 @@
 /*   By: gtomasin <gtomasin@student.42lehavre.fr>  #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/11/01 02:55:33 by gtomasin         #+#    #+#              */
-/*   Updated: 2026/11/07 14:48:37 by gtomasin        ###   ########.fr        */
+/*   Updated: 2026/11/07 15:27:53 by gtomasin        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,25 +54,25 @@ size_t	ft_len(const char *str)
 char	*ft_strjoin(const char *s1, const char *s2)
 {
 	char	*result;
-	size_t	i;
-	size_t	j;
+	size_t	len1;
+	size_t	len2;
 
-	result = malloc((ft_len(s1) + ft_len(s2) + 1) * sizeof(char));
+	len1 = ft_len(s1);
+	len2 = ft_len(s2);
+	result = malloc((len1 + len2 + 1) * sizeof(char));
 	if (!result)
 		return (NULL);
-	i = 0;
-	while (s1 && s1[i])
+	result[len1 + len2] = '\0';
+	while (len2 > 0)
 	{
-		result[i] = s1[i];
-		i++;
+		len2--;
+		result[len1 + len2] = s2[len2];
 	}
-	j = 0;
-	while (s2 && s2[j])
+	while (len1 > 0)
 	{
-		result[i + j] = s2[j];
-		j++;
+		len1--;
+		result[len1] = s1[len1];
 	}
-	result[i + j] = '\0';
 	return (result);
 }
 
