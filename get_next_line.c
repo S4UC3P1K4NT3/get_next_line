@@ -6,7 +6,7 @@
 /*   By: gtomasin <gtomasin@student.42lehavre.fr>  #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/11/07 14:40:02 by gtomasin         #+#    #+#              */
-/*   Updated: 2026/11/07 14:46:28 by gtomasin        ###   ########.fr        */
+/*   Updated: 2026/11/07 14:55:48 by gtomasin        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,21 +82,24 @@ static char	*read_line(char **keep, int fd)
 	char	*tmp;
 	char	*joined;
 
+	if (has_newline(*keep))
+		return (eof(NULL, keep, 1));
 	tmp = malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (!tmp)
 		return (eof(NULL, keep, -1));
 	br = 1;
-	while (!has_newline(*keep) && br > 0)
+	tmp[0] = '\0';
+	while (!has_newline(tmp) && br > 0)
 	{
 		br = read(fd, tmp, BUFFER_SIZE);
 		if (br <= 0)
 			break ;
 		tmp[br] = '\0';
 		joined = ft_strjoin(*keep, tmp);
-		if (!joined)
-			return (eof(tmp, keep, -1));
 		free(*keep);
 		*keep = joined;
+		if (!joined)
+			return (eof(tmp, keep, -1));
 	}
 	return (eof(tmp, keep, br));
 }
