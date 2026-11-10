@@ -6,11 +6,11 @@
 /*   By: gtomasin <gtomasin@student.42lehavre.fr>  #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/11/07 15:37:47 by gtomasin         #+#    #+#              */
-/*   Updated: 2026/11/10 05:58:16 by gtomasin        ###   ########.fr        */
+/*   Updated: 2026/11/10 06:00:28 by gtomasin        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {

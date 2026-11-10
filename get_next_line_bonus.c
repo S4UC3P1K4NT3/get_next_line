@@ -6,11 +6,11 @@
 /*   By: gtomasin <gtomasin@student.42lehavre.fr>  #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/11/07 14:40:02 by gtomasin         #+#    #+#              */
-/*   Updated: 2026/11/10 05:59:46 by gtomasin        ###   ########.fr        */
+/*   Updated: 2026/11/10 06:00:20 by gtomasin        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 static int	has_newline(char *str)
 {
