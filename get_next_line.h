@@ -6,7 +6,7 @@
 /*   By: gtomasin <gtomasin@student.42lehavre.fr>  #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/11/01 02:55:42 by gtomasin         #+#    #+#              */
-/*   Updated: 2026/11/07 14:48:26 by gtomasin        ###   ########.fr        */
+/*   Updated: 2026/11/10 06:21:40 by gtomasin        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,10 @@
 #  define BUFFER_SIZE 42
 # endif
 
-# include <stdlib.h>
 # include <unistd.h>
+# include <fcntl.h>
+# include <stdlib.h>
+# include <stdio.h>
 
 char	*get_next_line(int fd);
 size_t	ft_len(const char *str);

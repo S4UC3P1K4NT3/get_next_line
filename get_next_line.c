@@ -6,7 +6,7 @@
 /*   By: gtomasin <gtomasin@student.42lehavre.fr>  #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/11/07 14:40:02 by gtomasin         #+#    #+#              */
-/*   Updated: 2026/11/10 05:54:32 by gtomasin        ###   ########.fr        */
+/*   Updated: 2026/11/10 06:27:50 by gtomasin        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,3 +112,17 @@ char	*get_next_line(int fd)
 		return (NULL);
 	return (read_line(&keep, fd));
 }
+
+// int	main(void)
+// {
+// 	int		fd;
+// 	char	*line;
+
+// 	fd = open("get_next_line_utils.c", O_RDONLY);
+// 	while ((line = get_next_line(fd)))
+// 	{
+// 		printf("%s", line);
+// 		free(line);
+// 	}
+// 	return (0);
+// }

@@ -6,7 +6,7 @@
 /*   By: gtomasin <gtomasin@student.42lehavre.fr>  #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/11/01 02:55:42 by gtomasin         #+#    #+#              */
-/*   Updated: 2026/11/10 05:59:06 by gtomasin        ###   ########.fr        */
+/*   Updated: 2026/11/10 06:21:50 by gtomasin        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,10 @@
 #  define MAX_FD 1024
 # endif
 
-# include <stdlib.h>
 # include <unistd.h>
+# include <fcntl.h>
+# include <stdlib.h>
+# include <stdio.h>
 
 char	*get_next_line(int fd);
 size_t	ft_len(const char *str);
